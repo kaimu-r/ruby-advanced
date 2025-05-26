@@ -4,8 +4,11 @@
 
 require 'csv'
 
-# ヘッダーを適切なキーに変換する
-HEADER_MAP = {
+# CSVファイルのパスを指定
+file_path = 'data/personal_infomation (3).csv'
+
+# 各列の命名規則を定義
+HEADER_MAPPING = {
     'no' => 'id',
     'namae' => 'name',
     'rubi' => 'ruby',
@@ -21,17 +24,33 @@ HEADER_MAP = {
     'tanjobi' => 'birthday'
 }
 
-# ヘッダーの変換用の関数
-# 参考【Qiita】https://qiita.com/tyamagu2/items/950aad7e67de1592e9d3
-converter = lambda { |header| HEADER_MAP[header] }
-# p converter
+class CSVWrapper
+    def initialize(file_path)
+        # CSVファイルのパスを保存
+        @file_path = file_path
+    end
+    
+    def read_csv(headers: false)
+        # CSVファイルの読み込み
+        @table = CSV.read(@file_path, headers: headers)
+    end
 
-# 参考【CSVクラスドキュメント】https://docs.ruby-lang.org/ja/latest/class/CSV.html#S_READ
-# 参考【CSV.newメソッド】https://docs.ruby-lang.org/ja/latest/method/CSV/s/new.html
-# 参考【CSV::HeaderConverters】https://docs.ruby-lang.org/ja/latest/method/CSV/i/header_converters.html
-# CSVファイルを読み込み、各行をハッシュ値に変換する
-table = CSV.read('data/personal_infomation (3).csv', headers: true, header_converters: converter)
-# p table.class # => CSV::Table
-# p CSV::HeaderConverters.keys # => [:downcase, :symbol]
+    def headers_converter(header_mapping)
+        # 各行をハッシュに変換してヘッダーを変換する
+        @table.map do |row|
+            row.to_h.transform_keys { |key| header_mapping[key] || key }
+        end
+    end
+end
 
-table.each { |row| puts row['name'] }
+# CSVWrapperクラスのインスタンスを生成
+csv_wrapper = CSVWrapper.new(file_path)
+
+# CSVファイルを読み込み、ヘッダーを有効にする
+csv_data = csv_wrapper.read_csv(headers: true)
+
+# ヘッダーを変換して各行をハッシュに変換
+row_data = csv_wrapper.headers_converter(HEADER_MAPPING)
+
+# 各行のnameキーの値を出力
+row_data.each { |row| puts row['name'] }
