@@ -13,7 +13,7 @@ class User
         @address4 = address4
         @address5 = address5
 
-        # 誕生日をDateオブジェクトとして保存する
+        # 生年月日をDateオブジェクトとして保存する
         date_list = birthday.split('/')
         @birthday = Date.new(date_list[0].to_i, date_list[1].to_i, date_list[2].to_i)
     end
@@ -25,11 +25,11 @@ class User
     end
 
     def getAge
-        # 誕生日から年齢を計算して返す
+        # 生年月日から年齢を計算して返す
         today = Date.today
         age = today.year - @birthday.year
 
-        # 今年の誕生日がまだ来ていない人は年齢を1歳引く
+        # 今年の生年月日がまだ来ていない人は年齢を1歳引く
         if (today.month < @birthday.month) || (today.month == @birthday.month && today.day < @birthday.day)
             age -= 1
         end
