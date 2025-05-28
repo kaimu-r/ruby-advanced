@@ -21,11 +21,8 @@ HEADER_MAPPING = {
     'tanjobi' => 'birthday'
 }
 
-# CSVWrapperクラスのインスタンスを生成
+# CSVWrapperクラスのインスタンスを生成し、ファイルを読み込む
 csv_wrapper = CSVWrapper.new(file_path)
-
-# CSVファイルを読み込み、ヘッダーを有効にする
-csv_data = csv_wrapper.read_csv(headers: true)
 
 # ヘッダーを変換して各行をハッシュに変換
 row_data = csv_wrapper.headers_converter(HEADER_MAPPING)
@@ -43,6 +40,6 @@ row_data.each do |row|
     )
 
     puts user.name
-    puts user.getFullAddress
-    puts user.getAge
+    puts user.get_full_address
+    puts user.get_age
 end

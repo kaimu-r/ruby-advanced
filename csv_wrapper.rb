@@ -1,14 +1,9 @@
 require 'csv'
 
 class CSVWrapper
-    def initialize(file_path)
-        # CSVファイルのパスを保存
-        @file_path = file_path
-    end
-    
-    def read_csv(headers: false)
+    def initialize(file_path, headers: true)
         # CSVファイルの読み込み
-        @table = CSV.read(@file_path, headers: headers)
+        @table = CSV.read(file_path, headers: headers)
     end
 
     def headers_converter(header_mapping)
