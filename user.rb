@@ -18,13 +18,13 @@ class User
         @birthday = Date.new(date_list[0].to_i, date_list[1].to_i, date_list[2].to_i)
     end
 
-
-    def getFullAddress
+    def get_full_address
         # 住所を結合して返す
+        # compactはnilを処理するために使用している
         [@address1, @address2, @address3, @address4, @address5].compact.join
     end
 
-    def getAge
+    def get_age
         # 生年月日から年齢を計算して返す
         today = Date.today
         age = today.year - @birthday.year
