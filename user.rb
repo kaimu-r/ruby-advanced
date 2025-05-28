@@ -2,7 +2,7 @@ require 'date'
 
 class User
     # 【参照 Moduleクラス attr_accessor】https://docs.ruby-lang.org/ja/latest/method/Module/i/attr_accessor.html
-    attr_accessor :name
+    attr_accessor :name, :birthday
 
     def initialize(name, address1, address2, address3, address4, address5, birthday)
         # インスタンス変数の初期化
