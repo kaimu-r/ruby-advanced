@@ -31,5 +31,3 @@ class FileWrapper
         self.write(JSON.pretty_generate(hash))
     end
 end
-
-
