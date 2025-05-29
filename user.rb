@@ -4,6 +4,14 @@ class User
     # 【参照 Moduleクラス attr_accessor】https://docs.ruby-lang.org/ja/latest/method/Module/i/attr_accessor.html
     attr_accessor :name, :birthday
 
+    # Userクラス内の独自例外クラス
+    # 年齢が18歳未満のユーザーの登録が行われた場合に例外を投げる
+    class UnderageError < StandardError
+        def initialize(msg = "18歳未満のユーザーは登録できません")
+            super(msg)
+        end
+    end
+
     def initialize(name, address1, address2, address3, address4, address5, birthday)
         # インスタンス変数の初期化
         @name = name
