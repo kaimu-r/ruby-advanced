@@ -45,21 +45,17 @@ class FileWrapper
     end
 
     # Arrayを文字列に変換・改行コードを入れてcsv書き込む
-    def write_csv(rows, headers: nil)
+    def write_csv(rows, headers = nil)
         # csvファイルに書き込む用の改行コードを記述した文字列を定義
         csv_string = CSV.generate do |csv|
             # ヘッダーが存在する場合は一行目に追加
-            if headers
-                csv.add_row(headers)
-            end
+            csv.add_row(headers) if headers
 
             # 配列を一行ずつ取得していく
-            rows.each do |row|
-                csv.add_row(row)
-            end
+            rows.each {|row| csv.add_row(row)}
         end
 
         # ファイルを書き込んで返す
-        write(csv_string)
+        self.write(csv_string)
     end
 end
