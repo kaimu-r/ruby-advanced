@@ -5,6 +5,7 @@ file_path = 'user.json'
 file_wrapper = FileWrapper.new(file_path)
 users_hash = file_wrapper.read_json
 
+# 都道府県名ごとのユーザーを格納する空のhashを定義
 pref_users = {}
 
 # 都道府県名をキーにして配列をvalueにするhashを作成
