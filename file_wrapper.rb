@@ -27,14 +27,9 @@ class FileWrapper
 
     def read_json()
         str = self.read
-        if str.empty?
-            str = {}
-        else
-            str = JSON.parse(str)
-        end
 
-        # hashを返す
-        str
+        # ファイル内容をhashにして返す
+        str.empty? ? {} : JSON.parse(str)
     end
     
     # 内容を保存
