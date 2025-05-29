@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>都道府県別平均年齢</h1>
+
+    <table>
+    <thead>
+      <tr>
+        <% csv_wrapper.table.headers.each do |h| %>
+          <th><%= h %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% csv_wrapper.table.each do |row| %>
+        <tr>
+            <td><%= row['都道府県'] %></td>
+            <td><%= row['平均年齢'] %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</body>
+</html>
