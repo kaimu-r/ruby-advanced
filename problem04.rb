@@ -28,6 +28,9 @@ pref_user_file_path = 'pref_user.csv'
 # 各都道府県の平均年齢を配列に格納する
 pref_age_list = []
 
+# csvに書き込む際のヘッダーを定義
+header = ['都道府県', '平均年齢']
+
 # 各都道府県ごとにユーザーの情報を取得して
 pref_users.each do |pref, users|
     # 年齢の合計値を格納する
@@ -48,4 +51,4 @@ end
 csv_file_wrapper = FileWrapper.new(pref_user_file_path)
 
 # csvファイルに書き込み
-csv_file_wrapper.write_csv(pref_age_list)
+csv_file_wrapper.write_csv(pref_age_list, header)
