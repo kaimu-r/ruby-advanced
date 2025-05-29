@@ -33,8 +33,19 @@ class User
     end
 
     def get_age
+        # 年齢を取得する
+        self.calc_age(Date.today)
+    end
+
+    private
+    
+    def adult?
+        # 成人年齢かどうかを判定
+        self.get_age >= 18
+    end
+
+    def calc_age(today)
         # 生年月日から年齢を計算して返す
-        today = Date.today
         age = today.year - @birthday.year
 
         # 今年の生年月日がまだ来ていない人は年齢を1歳引く
