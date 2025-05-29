@@ -24,6 +24,9 @@ class User
         # 生年月日をDateオブジェクトとして保存する
         date_list = birthday.split('/')
         @birthday = Date.new(date_list[0].to_i, date_list[1].to_i, date_list[2].to_i)
+
+        # 年齢が18歳未満の場合は例外を投げる
+        raise UnderageError if self.adult? == false
     end
 
     def get_full_address
