@@ -1,6 +1,8 @@
 require 'csv'
 
 class CSVWrapper
+    attr_accessor :table
+    
     def initialize(file_path, headers: true)
         # CSVファイルの読み込み
         @table = CSV.read(file_path, headers: headers)
