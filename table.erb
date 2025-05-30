@@ -9,22 +9,22 @@
     <h1>都道府県別平均年齢</h1>
 
     <table>
-    <thead>
-      <tr>
-        <% csv_wrapper.table.headers.each do |h| %>
-          <th><%= h %></th>
-        <% end %>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% csv_wrapper.table.each do |row| %>
+      <thead>
         <tr>
-            <td><%= row['都道府県'] %></td>
-            <td><%= row['平均年齢'] %></td>
+          <% csv_wrapper.table.headers.each do |header| %>
+            <th><%= header %></th>
+          <% end %>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+
+      <tbody>
+        <% csv_wrapper.table.each do |row| %>
+          <tr>
+              <td><%= row['都道府県'] %></td>
+              <td><%= row['平均年齢'] %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 </body>
 </html>
